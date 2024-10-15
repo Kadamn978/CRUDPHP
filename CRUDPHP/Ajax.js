@@ -1,8 +1,8 @@
-$( document ).ready(function() {
+$(document).ready(function () {
     getAllData();
-    console.log( "ready!" );
+    console.log("ready!");
 });
-$("form#crudAppForm").on("submit",function (e) {
+$("form#crudAppForm").on("submit", function (e) {
     e.preventDefault();
     if ($("#crudAppForm").valid()) { // Check if the form is valid
         var name = $("#name").val();
@@ -19,7 +19,7 @@ $("form#crudAppForm").on("submit",function (e) {
             email: email,
             contact: contact,
             editId: editId,
-        }, function(response) {
+        }, function (response) {
             if (response == "saved") {
                 $("#buttonLabel").html("Save");
                 $("#spinnerLoader").hide('fast');
@@ -32,12 +32,12 @@ $("form#crudAppForm").on("submit",function (e) {
 });
 
 function getAllData() {
-    $.post("crud.php",{crudOperation:"getData"},function (allData) {
+    $.post("crud.php", { crudOperation: "getData" }, function (allData) {
         $("#crudData").html(allData);
     });
 }
 
-function editData(editId,name,email,contact) {
+function editData(editId, name, email, contact) {
     $("#editId").val(editId);
     $("#name").val(name);
     $("#email").val(email);
@@ -46,11 +46,11 @@ function editData(editId,name,email,contact) {
 }
 
 function deleteData(deleteId) {
-    if(confirm("Are you sure to delete this ?")){
-        $('#deleteSpinner'+deleteId).show('fast');
-        $.post("crud.php",{crudOperation:"deleteData",deleteId:deleteId},function (response) {
+    if (confirm("Are you sure to delete this ?")) {
+        $('#deleteSpinner' + deleteId).show('fast');
+        $.post("crud.php", { crudOperation: "deleteData", deleteId: deleteId }, function (response) {
             if (response == "deleted") {
-                $('#deleteSpinner'+deleteId).hide('fast');
+                $('#deleteSpinner' + deleteId).hide('fast');
                 getAllData();
             }
         });

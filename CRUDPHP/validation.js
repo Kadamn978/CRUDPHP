@@ -46,6 +46,6 @@ $(document).ready(function () {
             error.addClass("error"); // Add error class directly to the error message
             error.insertAfter(element); // Place error message directly after the input field
         }
-        
+
     });
 });
